@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>生日快乐，我爱的人</title>
+    <title>给最爱的你 - 生日惊喜</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -25,9 +25,10 @@
             padding: 20px;
         }
         
-        .container {
-            max-width: 1000px;
+        /* 验证页面样式 */
+        .auth-container {
             width: 100%;
+            max-width: 500px;
             background: rgba(255, 255, 255, 0.15);
             border-radius: 20px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
@@ -35,16 +36,106 @@
             position: relative;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            animation: containerGlow 4s infinite alternate;
+            padding: 40px 30px;
+            text-align: center;
+            transition: transform 0.5s ease, opacity 0.5s ease;
         }
         
-        @keyframes containerGlow {
-            0% { box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2); }
-            100% { box-shadow: 0 15px 35px rgba(255, 105, 180, 0.4); }
+        .auth-container.hidden {
+            display: none;
+        }
+        
+        .auth-container h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: #ffe6ee;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .auth-container p {
+            margin-bottom: 30px;
+            color: #ffe6ee;
+            font-size: 1.1rem;
+        }
+        
+        .date-input {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .date-input input {
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            font-size: 1.1rem;
+            text-align: center;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        
+        .date-input input:focus {
+            border-color: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .date-input input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .submit-btn {
+            padding: 15px 30px;
+            border-radius: 50px;
+            border: none;
+            background: linear-gradient(135deg, #ff3e6c, #ff8fab);
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .error-message {
+            color: #ffe6ee;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 15px;
+            display: none;
+        }
+        
+        /* 主内容页面样式 */
+        .main-container {
+            width: 100%;
+            max-width: 1200px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            position: relative;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: none;
+            animation: fadeIn 1s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         
         .header {
-            padding: 60px 40px 40px;
+            padding: 50px 40px 30px;
             text-align: center;
             position: relative;
             background: linear-gradient(135deg, rgba(255, 62, 108, 0.3) 0%, rgba(255, 143, 171, 0.4) 100%);
@@ -59,8 +150,7 @@
             color: #fff;
             margin-bottom: 15px;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            opacity: 0;
-            animation: fadeInUp 1.2s ease forwards 0.5s, textGlow 3s infinite alternate;
+            animation: textGlow 3s infinite alternate;
         }
         
         @keyframes textGlow {
@@ -73,84 +163,13 @@
             color: #ffe6ee;
             font-weight: 300;
             letter-spacing: 1px;
-            opacity: 0;
-            animation: fadeInUp 1.2s ease forwards 0.8s;
         }
         
         .content {
-            display: flex;
-            flex-wrap: wrap;
             padding: 40px;
-            gap: 40px;
-        }
-        
-        .photo-section {
-            flex: 1;
-            min-width: 300px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-        }
-        
-        .photo-frame {
-            width: 280px;
-            height: 350px;
-            border-radius: 15px;
-            overflow: hidden;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            transform: perspective(1000px) rotateY(-5deg);
-            transition: transform 0.8s ease, box-shadow 0.8s ease;
-            opacity: 0;
-            animation: fadeIn 1.5s ease forwards 1.2s, photoFloat 6s ease-in-out infinite;
-            border: 5px solid rgba(255, 255, 255, 0.3);
-        }
-        
-        @keyframes photoFloat {
-            0% { transform: perspective(1000px) rotateY(-5deg) translateY(0); }
-            50% { transform: perspective(1000px) rotateY(-5deg) translateY(-10px); }
-            100% { transform: perspective(1000px) rotateY(-5deg) translateY(0); }
-        }
-        
-        .photo-frame:hover {
-            transform: perspective(1000px) rotateY(0deg);
-            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.5);
-            animation-play-state: paused;
-        }
-        
-        .photo-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(1.05) contrast(1.1);
-            transition: transform 0.8s ease;
-        }
-        
-        .photo-frame:hover img {
-            transform: scale(1.05);
-        }
-        
-        .photo-frame::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, rgba(255, 105, 180, 0.2) 0%, transparent 50%);
-            pointer-events: none;
         }
         
         .message-section {
-            flex: 2;
-            min-width: 300px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        
-        .message {
             background: rgba(255, 255, 255, 0.2);
             padding: 40px;
             border-radius: 15px;
@@ -159,18 +178,11 @@
             position: relative;
             border: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            opacity: 0;
-            animation: fadeIn 1.5s ease forwards 1.5s, messagePulse 5s infinite;
             backdrop-filter: blur(5px);
+            margin-bottom: 40px;
         }
         
-        @keyframes messagePulse {
-            0% { box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); }
-            50% { box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3); }
-            100% { box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); }
-        }
-        
-        .message::before {
+        .message-section::before {
             content: """;
             font-size: 80px;
             color: rgba(255, 255, 255, 0.5);
@@ -180,7 +192,7 @@
             font-family: Georgia, serif;
         }
         
-        .message p {
+        .message-section p {
             margin-bottom: 20px;
             position: relative;
             z-index: 1;
@@ -192,36 +204,224 @@
             text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
         }
         
-        .wishes {
-            margin-top: 40px;
-            opacity: 0;
-            animation: fadeIn 1.5s ease forwards 1.8s;
+        /* 轮播图样式 */
+        .carousel-section {
+            margin-bottom: 40px;
         }
         
-        .wishes h2 {
+        .carousel-section h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #ffe6ee;
+            margin-bottom: 25px;
+            text-align: center;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .carousel-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
+        .carousel-item {
+            min-width: 100%;
+            position: relative;
+        }
+        
+        .carousel-item img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            padding: 20px;
+            color: white;
+        }
+        
+        .carousel-caption h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+        
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px;
+        }
+        
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .carousel-dot.active {
+            background: #ff3e6c;
+            transform: scale(1.2);
+        }
+        
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.3);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .carousel-arrow:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+        
+        .carousel-arrow.prev {
+            left: 20px;
+        }
+        
+        .carousel-arrow.next {
+            right: 20px;
+        }
+        
+        /* 大事记时间轴样式 */
+        .timeline-section {
+            margin-bottom: 40px;
+        }
+        
+        .timeline-section h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #ffe6ee;
+            margin-bottom: 40px;
+            text-align: center;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+        }
+        
+        .timeline-item {
+            margin-bottom: 50px;
+            position: relative;
+            width: 100%;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content {
+            left: 0;
+            text-align: right;
+            padding-right: 70px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content {
+            left: 50%;
+            padding-left: 70px;
+        }
+        
+        .timeline-content {
+            position: relative;
+            width: 45%;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .timeline-content:hover {
+            transform: translateY(-5px);
+        }
+        
+        .timeline-date {
+            font-weight: 600;
+            color: #ff3e6c;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .timeline-marker {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #ff3e6c;
+            border: 4px solid rgba(255, 255, 255, 0.8);
+            z-index: 1;
+        }
+        
+        .wishes-section {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .wishes-section h2 {
             font-family: 'Dancing Script', cursive;
             font-size: 2.5rem;
             color: #ffe6ee;
             margin-bottom: 20px;
             text-align: center;
-            font-weight: 700;
-            letter-spacing: 1px;
             text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
         
         .wishes-list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 15px;
         }
         
         .wish-item {
             background: rgba(255, 255, 255, 0.25);
-            padding: 15px 20px;
+            padding: 20px;
             border-radius: 10px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
             transition: transform 0.3s ease, background 0.3s ease;
             border-left: 4px solid #ff8fab;
             backdrop-filter: blur(5px);
@@ -243,7 +443,7 @@
         
         .wish-item i {
             color: #ff3e6c;
-            font-size: 1.3rem;
+            font-size: 1.5rem;
         }
         
         .footer {
@@ -261,9 +461,8 @@
             color: #ffe6ee;
             margin-top: 10px;
             letter-spacing: 2px;
-            opacity: 0;
-            animation: fadeIn 1.5s ease forwards 2s, signatureGlow 3s infinite alternate;
             text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            animation: signatureGlow 3s infinite alternate;
         }
         
         @keyframes signatureGlow {
@@ -314,51 +513,6 @@
             100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
         }
         
-        .balloon {
-            position: absolute;
-            width: 40px;
-            height: 50px;
-            border-radius: 50%;
-            background: #ff4081;
-            opacity: 0.7;
-            animation: balloonFloat 15s linear infinite;
-            bottom: -50px;
-        }
-        
-        .balloon::before {
-            content: "";
-            position: absolute;
-            width: 1px;
-            height: 60px;
-            background: rgba(255, 255, 255, 0.5);
-            top: 50px;
-            left: 20px;
-        }
-        
-        @keyframes balloonFloat {
-            0% { transform: translateY(0) translateX(0); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-100vh) translateX(20px); opacity: 0; }
-        }
-        
-        /* 动画 */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        @keyframes fadeInUp {
-            from { 
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to { 
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
         /* 响应式设计 */
         @media (max-width: 768px) {
             .header h1 {
@@ -371,17 +525,32 @@
             
             .content {
                 padding: 20px;
-                gap: 30px;
             }
             
-            .photo-frame {
-                width: 220px;
-                height: 280px;
-            }
-            
-            .message {
+            .message-section {
                 padding: 25px;
                 font-size: 1.1rem;
+            }
+            
+            .carousel-item img {
+                height: 300px;
+            }
+            
+            .timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                left: 0;
+                width: calc(100% - 50px);
+                padding-left: 50px;
+                padding-right: 20px;
+                text-align: left;
+            }
+            
+            .timeline-marker {
+                left: 20px;
             }
             
             .wishes-list {
@@ -392,65 +561,78 @@
                 font-size: 2rem;
             }
         }
-        
-        /* 烟花效果 */
-        .firework {
-            position: absolute;
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8);
-            animation: fireworkExplode 1.5s ease-out forwards;
-        }
-        
-        @keyframes fireworkExplode {
-            0% { transform: translate(var(--x), var(--y)) scale(0); opacity: 1; }
-            100% { transform: translate(var(--x), var(--y)) scale(1); opacity: 0; box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.8); }
-        }
     </style>
 </head>
 <body>
-    <div class="container">
+    <!-- 验证页面 -->
+    <div class="auth-container" id="authContainer">
+        <h1>我们的纪念日</h1>
+        <p>请输入我们的结婚纪念日来解锁惊喜</p>
+        <div class="date-input">
+            <input type="text" id="dateInput" placeholder="格式：YYYY/MM/DD" autocomplete="off">
+            <button class="submit-btn" id="submitBtn">进入惊喜</button>
+        </div>
+        <div class="error-message" id="errorMessage">纪念日不正确，请重新输入</div>
+    </div>
+
+    <!-- 主内容页面 -->
+    <div class="main-container" id="mainContainer">
         <div class="header">
-            <h1>生日快乐，婷婷老婆</h1>
+            <h1>生日快乐，我最爱的婷婷老婆</h1>
             <p>愿这你的世界充满欢笑与美好回忆</p>
         </div>
         
         <div class="content">
-            <div class="photo-section">
-                <div class="photo-frame">
-                    <!-- 这里可以替换为实际照片 -->
-                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjgwIiBoZWlnaHQ9IjM1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjgwIiBoZWlnaHQ9IjM1MCIgZmlsbD0iI2ZmOGZhYiIvPjxjaXJjbGUgY3g9IjE0MCIgY3k9IjEwMCIgcj0iNTAiIGZpbGw9IiNmZmZmZmYiLz48Y2lyY2xlIGN4PSIxMTAiIGN5PSI5MCIgcj0iNiIgZmlsbD0iI2ZmM2U2YyIvPjxjaXJjbGUgY3g9IjE3MCIgY3k9IjkwIiByPSI2IiBmaWxsPSIjZmYzZTZjIi8+PHBhdGggZD0iTTEwMCAxNDUgUTE0MCAxODAgMTgwIDE0NSIgc3Ryb2tlPSIjZmYzZTZjIiBzdHJva2Utd2lkdGg9IjQiIGZpbGw9Im5vbmUiIC8+PC9zdmc+" alt="生日照片">
+            <div class="message-section">
+                <p>亲爱的，在这个特别的日子里，我想对你说：</p>
+                <p>感谢你走进我的生命，让我的世界变得更加美好。<span class="highlight">你的微笑是我每天的动力</span>，你的温柔是我心灵的港湾。</p>
+                <p>愿你的生日充满无尽的欢乐，愿你的每一个愿望都能实现。我会一直陪伴在你身边，<span class="highlight">共同创造更多美好的回忆</span>。</p>
+                <p>我爱你，不仅仅在今天，而是在未来的每一天。</p>
+            </div>
+            
+            <div class="carousel-section">
+                <h2>我们的美好回忆</h2>
+                <div class="carousel-container">
+                    <div class="carousel" id="carousel">
+                        <!-- 轮播图将通过JavaScript动态添加 -->
+                    </div>
+                    <div class="carousel-arrow prev" id="prevBtn">
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <div class="carousel-arrow next" id="nextBtn">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+                <div class="carousel-nav" id="carouselNav">
+                    <!-- 指示点将通过JavaScript动态添加 -->
                 </div>
             </div>
             
-            <div class="message-section">
-                <div class="message">
-                    <p>亲爱的，在这个特别的日子里，我想对你说：</p>
-                    <p>感谢你走进我的生命，让我的世界变得更加美好。<span class="highlight">你的微笑是我每天的动力</span>，你的温柔是我心灵的港湾。</p>
-                    <p>愿你的生日充满无尽的欢乐，愿你的每一个愿望都能实现。我会一直陪伴在你身边，<span class="highlight">共同创造更多美好的回忆</span>。</p>
-                    <p>我爱你，不仅仅在今天，而是在未来的每一天。</p>
+            <div class="timeline-section">
+                <h2>我们的故事</h2>
+                <div class="timeline" id="timeline">
+                    <!-- 时间轴内容将通过JavaScript动态添加 -->
                 </div>
-                
-                <div class="wishes">
-                    <h2>生日愿望</h2>
-                    <div class="wishes-list">
-                        <div class="wish-item" style="--i: 0;">
-                            <i class="fas fa-heart"></i>
-                            <span>愿你永远健康快乐</span>
-                        </div>
-                        <div class="wish-item" style="--i: 1;">
-                            <i class="fas fa-star"></i>
-                            <span>愿你的梦想都能实现</span>
-                        </div>
-                        <div class="wish-item" style="--i: 2;">
-                            <i class="fas fa-smile"></i>
-                            <span>愿你每天都充满笑容</span>
-                        </div>
-                        <div class="wish-item" style="--i: 3;">
-                            <i class="fas fa-sun"></i>
-                            <span>愿你的生活充满阳光</span>
-                        </div>
+            </div>
+            
+            <div class="wishes-section">
+                <h2>生日祝福</h2>
+                <div class="wishes-list">
+                    <div class="wish-item" style="--i: 0;">
+                        <i class="fas fa-heart"></i>
+                        <span>愿你永远健康快乐</span>
+                    </div>
+                    <div class="wish-item" style="--i: 1;">
+                        <i class="fas fa-star"></i>
+                        <span>愿你的梦想都能实现</span>
+                    </div>
+                    <div class="wish-item" style="--i: 2;">
+                        <i class="fas fa-smile"></i>
+                        <span>愿你每天都充满笑容</span>
+                    </div>
+                    <div class="wish-item" style="--i: 3;">
+                        <i class="fas fa-sun"></i>
+                        <span>愿你的生活充满阳光</span>
                     </div>
                 </div>
             </div>
@@ -459,15 +641,182 @@
         <div class="footer">
             <p>谨以此页表达我对你深深的爱意</p>
             <div class="signature">永远爱你的丈夫</div>
-            <div class="date">2025年</div>
+            <div class="date">2025年十月初八</div>
         </div>
     </div>
 
     <script>
+        // 设置正确的结婚纪念日
+        const correctDate = "2023/12/21";
+        
+        // DOM元素
+        const authContainer = document.getElementById('authContainer');
+        const mainContainer = document.getElementById('mainContainer');
+        const dateInput = document.getElementById('dateInput');
+        const submitBtn = document.getElementById('submitBtn');
+        const errorMessage = document.getElementById('errorMessage');
+        const carousel = document.getElementById('carousel');
+        const carouselNav = document.getElementById('carouselNav');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const timeline = document.getElementById('timeline');
+        
+        // 照片数据 - 这里使用占位图，实际使用时可以替换为真实照片URL
+        const photos = [
+            { src: "https://picsum.photos/800/500?random=1", title: "我们的婚礼" },
+            { src: "https://picsum.photos/800/500?random=2", title: "第一次旅行" },
+            { src: "https://picsum.photos/800/500?random=3", title: "浪漫晚餐" },
+            { src: "https://picsum.photos/800/500?random=4", title: "生日庆祝" },
+            { src: "https://picsum.photos/800/500?random=5", title: "海边漫步" }
+        ];
+        
+        // 大事记数据
+        const milestones = [
+            { date: "2022年4月7日", event: "我们相识于微信" },
+            { date: "2022年7月17日", event: "我们第一次见面一起看了第一场电影" },
+            { date: "2023年正月初五", event: "我们订婚了" },
+            { date: "2023年12月21日", event: "我们领证了" },
+            { date: "2024年正月初九", event: "我们结婚了" },
+            { date: "2025年2月9日", event: "我们的崽崽出生了" },
+            { date: "2025年4月", event: "我们购买了属于我们的房子" },
+            { date: "未来", event: "我们还要一起经历更多的事" }
+        ];
+        
+        // 轮播图状态
+        let currentSlide = 0;
+        
+        // 验证日期
+        submitBtn.addEventListener('click', function() {
+            const inputDate = dateInput.value.trim();
+            
+            if (inputDate === correctDate) {
+                // 验证成功
+                authContainer.style.opacity = '0';
+                setTimeout(() => {
+                    authContainer.classList.add('hidden');
+                    mainContainer.style.display = 'block';
+                    createConfetti();
+                    createFloatingHearts();
+                    renderCarousel();
+                    renderTimeline();
+                }, 500);
+            } else {
+                // 验证失败
+                errorMessage.style.display = 'block';
+                dateInput.style.borderColor = '#ff3e6c';
+                dateInput.style.animation = 'shake 0.5s';
+                
+                setTimeout(() => {
+                    dateInput.style.animation = '';
+                }, 500);
+            }
+        });
+        
+        // 按Enter键提交
+        dateInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                submitBtn.click();
+            }
+        });
+        
+        // 渲染轮播图
+        function renderCarousel() {
+            carousel.innerHTML = '';
+            carouselNav.innerHTML = '';
+            
+            photos.forEach((photo, index) => {
+                // 创建轮播项
+                const carouselItem = document.createElement('div');
+                carouselItem.className = 'carousel-item';
+                
+                const img = document.createElement('img');
+                img.src = photo.src;
+                img.alt = photo.title;
+                
+                const caption = document.createElement('div');
+                caption.className = 'carousel-caption';
+                caption.innerHTML = `<h3>${photo.title}</h3>`;
+                
+                carouselItem.appendChild(img);
+                carouselItem.appendChild(caption);
+                carousel.appendChild(carouselItem);
+                
+                // 创建指示点
+                const dot = document.createElement('div');
+                dot.className = 'carousel-dot';
+                if (index === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => goToSlide(index));
+                carouselNav.appendChild(dot);
+            });
+            
+            // 添加事件监听
+            prevBtn.addEventListener('click', prevSlide);
+            nextBtn.addEventListener('click', nextSlide);
+            
+            // 自动轮播
+            setInterval(nextSlide, 5000);
+        }
+        
+        // 轮播图函数
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+        }
+        
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % photos.length;
+            updateCarousel();
+        }
+        
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + photos.length) % photos.length;
+            updateCarousel();
+        }
+        
+        function updateCarousel() {
+            carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // 更新指示点
+            document.querySelectorAll('.carousel-dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+        
+        // 渲染时间轴
+        function renderTimeline() {
+            timeline.innerHTML = '';
+            
+            milestones.forEach((milestone, index) => {
+                const timelineItem = document.createElement('div');
+                timelineItem.className = 'timeline-item';
+                
+                const marker = document.createElement('div');
+                marker.className = 'timeline-marker';
+                
+                const content = document.createElement('div');
+                content.className = 'timeline-content';
+                
+                const date = document.createElement('div');
+                date.className = 'timeline-date';
+                date.textContent = milestone.date;
+                
+                const event = document.createElement('p');
+                event.textContent = milestone.event;
+                
+                content.appendChild(date);
+                content.appendChild(event);
+                
+                timelineItem.appendChild(marker);
+                timelineItem.appendChild(content);
+                
+                timeline.appendChild(timelineItem);
+            });
+        }
+        
         // 创建五彩纸屑
         function createConfetti() {
             const colors = ['#ffeb3b', '#ff4081', '#3f51b5', '#4caf50', '#ff9800'];
-            const container = document.querySelector('.container');
+            const container = document.querySelector('.main-container');
             
             for (let i = 0; i < 50; i++) {
                 const confetti = document.createElement('div');
@@ -483,7 +832,7 @@
         
         // 创建漂浮的心形
         function createFloatingHearts() {
-            const container = document.querySelector('.container');
+            const container = document.querySelector('.main-container');
             
             for (let i = 0; i < 20; i++) {
                 const heart = document.createElement('div');
@@ -496,66 +845,16 @@
             }
         }
         
-        // 创建漂浮气球
-        function createBalloons() {
-            const colors = ['#ff4081', '#ffeb3b', '#3f51b5', '#4caf50', '#ff9800'];
-            const container = document.querySelector('.container');
-            
-            for (let i = 0; i < 10; i++) {
-                const balloon = document.createElement('div');
-                balloon.className = 'balloon';
-                balloon.style.left = Math.random() * 100 + 'vw';
-                balloon.style.animationDelay = Math.random() * 15 + 's';
-                balloon.style.background = colors[Math.floor(Math.random() * colors.length)];
-                container.appendChild(balloon);
+        // 添加抖动动画
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+                20%, 40%, 60%, 80% { transform: translateX(5px); }
             }
-        }
-        
-        // 创建烟花效果
-        function createFireworks() {
-            const container = document.querySelector('.container');
-            
-            setInterval(() => {
-                if (Math.random() > 0.7) { // 随机生成烟花
-                    const firework = document.createElement('div');
-                    firework.className = 'firework';
-                    firework.style.left = Math.random() * 100 + 'vw';
-                    firework.style.top = Math.random() * 100 + 'vh';
-                    firework.style.setProperty('--x', (Math.random() * 100 - 50) + 'px');
-                    firework.style.setProperty('--y', (Math.random() * 100 - 50) + 'px');
-                    firework.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
-                    container.appendChild(firework);
-                    
-                    setTimeout(() => {
-                        firework.remove();
-                    }, 1500);
-                }
-            }, 1000);
-        }
-        
-        // 初始化所有效果
-        document.addEventListener('DOMContentLoaded', function() {
-            createConfetti();
-            createFloatingHearts();
-            createBalloons();
-            createFireworks();
-            
-            // 添加点击效果 - 点击时产生心形
-            document.addEventListener('click', function(e) {
-                const heart = document.createElement('div');
-                heart.className = 'floating-heart';
-                heart.innerHTML = '❤';
-                heart.style.left = e.clientX + 'px';
-                heart.style.top = e.clientY + 'px';
-                heart.style.fontSize = '30px';
-                heart.style.animation = 'heartFloat 3s ease-out forwards';
-                document.body.appendChild(heart);
-                
-                setTimeout(() => {
-                    heart.remove();
-                }, 3000);
-            });
-        });
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
