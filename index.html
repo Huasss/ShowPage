@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人简介 - 微信可查看</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            padding: 15px;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1e88e5, #0d47a1);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            margin: 0 auto 15px;
+            overflow: hidden;
+            background-color: #fff;
+        }
+        
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        h1 {
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+        
+        .title {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        section {
+            padding: 20px;
+        }
+        
+        h2 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #1e88e5;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+        
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .skill {
+            background: #e3f2fd;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #1565c0;
+        }
+        
+        .contact {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .contact-item {
+            text-align: center;
+            flex: 1;
+        }
+        
+        .contact-item .icon {
+            font-size: 24px;
+            margin-bottom: 5px;
+            color: #1e88e5;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 13px;
+            color: #777;
+            background: #f9f9f9;
+        }
+        
+        /* 微信适配特别样式 */
+        .wechat-tip {
+            background: #f0f7ff;
+            border-left: 4px solid #1e88e5;
+            padding: 10px 15px;
+            margin: 15px 0;
+            font-size: 14px;
+            border-radius: 0 4px 4px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="avatar">
+                <!-- 这里可以使用在线图片URL或base64编码的图片 -->
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2UzZjJmZCIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LXNpemU9IjE0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iMC4zNWVtIiBmaWxsPSIjMTU2NWMwIj7nrqHnkIY8L3RleHQ+PC9zdmc+" alt="头像">
+            </div>
+            <h1>张三</h1>
+            <div class="title">前端开发工程师</div>
+        </header>
+        
+        <section>
+            <div class="wechat-tip">
+                此页面已针对微信优化，可在微信中直接查看
+            </div>
+            
+            <h2>个人简介</h2>
+            <p>我是一名专注于前端开发的工程师，拥有5年Web开发经验。热爱学习新技术，致力于创建优秀的用户体验。</p>
+            
+            <h2>技能专长</h2>
+            <div class="skills">
+                <div class="skill">HTML/CSS</div>
+                <div class="skill">JavaScript</div>
+                <div class="skill">Vue.js</div>
+                <div class="skill">React</div>
+                <div class="skill">微信小程序</div>
+                <div class="skill">Node.js</div>
+            </div>
+            
+            <h2>工作经历</h2>
+            <p>2018-2020：ABC科技有限公司 - 前端开发工程师</p>
+            <p>2020-至今：XYZ互联网公司 - 高级前端工程师</p>
+            
+            <h2>项目经验</h2>
+            <p>曾主导多个大型项目的前端架构设计，包括企业级管理系统、电商平台和移动端应用。</p>
+            
+            <div class="contact">
+                <div class="contact-item">
+                    <div class="icon">📧</div>
+                    <div>邮箱</div>
+                </div>
+                <div class="contact-item">
+                    <div class="icon">📱</div>
+                    <div>电话</div>
+                </div>
+                <div class="contact-item">
+                    <div class="icon">💬</div>
+                    <div>微信</div>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <p>© 2023 个人简介页面 - 设计用于微信查看</p>
+        </footer>
+    </div>
+</body>
+</html>
