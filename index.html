@@ -29,9 +29,9 @@
         .auth-container {
             width: 100%;
             max-width: 500px;
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(30, 15, 25, 0.8);
             border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
             overflow: hidden;
             position: relative;
             backdrop-filter: blur(10px);
@@ -39,6 +39,13 @@
             padding: 40px 30px;
             text-align: center;
             transition: transform 0.5s ease, opacity 0.5s ease;
+            animation: containerFloat 6s ease-in-out infinite;
+        }
+        
+        @keyframes containerFloat {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
         }
         
         .auth-container.hidden {
@@ -81,6 +88,7 @@
         .date-input input:focus {
             border-color: rgba(255, 255, 255, 0.6);
             background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
         }
         
         .date-input input::placeholder {
@@ -98,6 +106,8 @@
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
         }
         
         .submit-btn:hover {
@@ -105,22 +115,56 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
         
+        .submit-btn:active {
+            transform: translateY(1px);
+        }
+        
+        .submit-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+        
+        .submit-btn:focus:not(:active)::after {
+            animation: ripple 1s ease-out;
+        }
+        
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(20, 20);
+                opacity: 0;
+            }
+        }
+        
         .error-message {
             color: #ffe6ee;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 100, 100, 0.3);
             padding: 10px;
             border-radius: 8px;
             margin-top: 15px;
             display: none;
+            animation: shake 0.5s ease;
         }
         
         /* 主内容页面样式 */
         .main-container {
             width: 100%;
             max-width: 1200px;
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(30, 15, 25, 0.85);
             border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
             overflow: hidden;
             position: relative;
             backdrop-filter: blur(10px);
@@ -150,7 +194,12 @@
             color: #fff;
             margin-bottom: 15px;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            animation: textGlow 3s infinite alternate;
+            animation: textGlow 3s infinite alternate, bounce 2s ease infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
         
         @keyframes textGlow {
@@ -163,6 +212,7 @@
             color: #ffe6ee;
             font-weight: 300;
             letter-spacing: 1px;
+            animation: fadeInUp 1.5s ease forwards;
         }
         
         .content {
@@ -170,16 +220,28 @@
         }
         
         .message-section {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(40, 20, 35, 0.8);
             padding: 40px;
             border-radius: 15px;
             line-height: 1.8;
             font-size: 1.2rem;
             position: relative;
             border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
             backdrop-filter: blur(5px);
             margin-bottom: 40px;
+            animation: slideInLeft 1s ease forwards;
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
         
         .message-section::before {
@@ -202,11 +264,24 @@
             color: #ffe6ee;
             font-weight: 500;
             text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(transparent 60%, rgba(255, 62, 108, 0.3) 40%);
         }
         
         /* 轮播图样式 */
         .carousel-section {
             margin-bottom: 40px;
+            animation: slideInRight 1s ease forwards;
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
         
         .carousel-section h2 {
@@ -299,6 +374,7 @@
         
         .carousel-arrow:hover {
             background: rgba(255, 255, 255, 0.5);
+            transform: translateY(-50%) scale(1.1);
         }
         
         .carousel-arrow.prev {
@@ -312,6 +388,18 @@
         /* 大事记时间轴样式 */
         .timeline-section {
             margin-bottom: 40px;
+            animation: fadeInUp 1s ease forwards;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         .timeline-section h2 {
@@ -344,6 +432,9 @@
             margin-bottom: 50px;
             position: relative;
             width: 100%;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+            animation-delay: calc(var(--i) * 0.2s);
         }
         
         .timeline-item:nth-child(odd) .timeline-content {
@@ -360,17 +451,18 @@
         .timeline-content {
             position: relative;
             width: 45%;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(50, 25, 40, 0.8);
             padding: 20px;
             border-radius: 10px;
             backdrop-filter: blur(5px);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
         .timeline-content:hover {
-            transform: translateY(-5px);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(255, 62, 108, 0.3);
         }
         
         .timeline-date {
@@ -390,14 +482,22 @@
             background: #ff3e6c;
             border: 4px solid rgba(255, 255, 255, 0.8);
             z-index: 1;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 62, 108, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 62, 108, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 62, 108, 0); }
         }
         
         .wishes-section {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(40, 20, 35, 0.8);
             padding: 30px;
             border-radius: 15px;
             backdrop-filter: blur(5px);
             border: 1px solid rgba(255, 255, 255, 0.3);
+            animation: fadeInUp 1s ease forwards;
         }
         
         .wishes-section h2 {
@@ -416,7 +516,7 @@
         }
         
         .wish-item {
-            background: rgba(255, 255, 255, 0.25);
+            background: rgba(50, 25, 40, 0.8);
             padding: 20px;
             border-radius: 10px;
             display: flex;
@@ -437,19 +537,24 @@
         
         .wish-item:hover {
             transform: translateY(-8px) scale(1.03);
-            background: rgba(255, 255, 255, 0.35);
+            background: rgba(60, 30, 45, 0.9);
             animation-play-state: paused;
         }
         
         .wish-item i {
             color: #ff3e6c;
             font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .wish-item:hover i {
+            transform: scale(1.2) rotate(10deg);
         }
         
         .footer {
             text-align: center;
             padding: 30px 40px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(30, 15, 25, 0.9);
             border-top: 1px solid rgba(255, 255, 255, 0.2);
             position: relative;
             overflow: hidden;
@@ -561,9 +666,49 @@
                 font-size: 2rem;
             }
         }
+        
+        /* 烟花效果 */
+        .firework {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8);
+            animation: fireworkExplode 1.5s ease-out forwards;
+        }
+        
+        @keyframes fireworkExplode {
+            0% { transform: translate(var(--x), var(--y)) scale(0); opacity: 1; }
+            100% { transform: translate(var(--x), var(--y)) scale(1); opacity: 0; box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.8); }
+        }
+        
+        /* 背景星星 */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 5s infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
     </style>
 </head>
 <body>
+    <!-- 背景星星 -->
+    <div class="stars" id="stars"></div>
+    
     <!-- 验证页面 -->
     <div class="auth-container" id="authContainer">
         <h1>我们的纪念日</h1>
@@ -578,8 +723,8 @@
     <!-- 主内容页面 -->
     <div class="main-container" id="mainContainer">
         <div class="header">
-            <h1>生日快乐，我最爱的婷婷老婆</h1>
-            <p>愿这你的世界充满欢笑与美好回忆</p>
+            <h1>生日快乐，我的爱人</h1>
+            <p>愿这一天充满欢笑与美好回忆</p>
         </div>
         
         <div class="content">
@@ -609,14 +754,14 @@
             </div>
             
             <div class="timeline-section">
-                <h2>我们的故事</h2>
+                <h2>我们的大事记</h2>
                 <div class="timeline" id="timeline">
                     <!-- 时间轴内容将通过JavaScript动态添加 -->
                 </div>
             </div>
             
             <div class="wishes-section">
-                <h2>生日祝福</h2>
+                <h2>生日愿望</h2>
                 <div class="wishes-list">
                     <div class="wish-item" style="--i: 0;">
                         <i class="fas fa-heart"></i>
@@ -641,7 +786,7 @@
         <div class="footer">
             <p>谨以此页表达我对你深深的爱意</p>
             <div class="signature">永远爱你的丈夫</div>
-            <div class="date">2025年十月初八</div>
+            <div class="date">2023年</div>
         </div>
     </div>
 
@@ -660,6 +805,7 @@
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
         const timeline = document.getElementById('timeline');
+        const starsContainer = document.getElementById('stars');
         
         // 照片数据 - 这里使用占位图，实际使用时可以替换为真实照片URL
         const photos = [
@@ -685,6 +831,20 @@
         // 轮播图状态
         let currentSlide = 0;
         
+        // 创建背景星星
+        function createStars() {
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.width = Math.random() * 3 + 'px';
+                star.style.height = star.style.width;
+                star.style.left = Math.random() * 100 + 'vw';
+                star.style.top = Math.random() * 100 + 'vh';
+                star.style.animationDelay = Math.random() * 5 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+        
         // 验证日期
         submitBtn.addEventListener('click', function() {
             const inputDate = dateInput.value.trim();
@@ -699,6 +859,7 @@
                     createFloatingHearts();
                     renderCarousel();
                     renderTimeline();
+                    createFireworks();
                 }, 500);
             } else {
                 // 验证失败
@@ -789,6 +950,7 @@
             milestones.forEach((milestone, index) => {
                 const timelineItem = document.createElement('div');
                 timelineItem.className = 'timeline-item';
+                timelineItem.style.setProperty('--i', index);
                 
                 const marker = document.createElement('div');
                 marker.className = 'timeline-marker';
@@ -845,6 +1007,28 @@
             }
         }
         
+        // 创建烟花效果
+        function createFireworks() {
+            const container = document.querySelector('.main-container');
+            
+            setInterval(() => {
+                if (Math.random() > 0.7) { // 随机生成烟花
+                    const firework = document.createElement('div');
+                    firework.className = 'firework';
+                    firework.style.left = Math.random() * 100 + 'vw';
+                    firework.style.top = Math.random() * 100 + 'vh';
+                    firework.style.setProperty('--x', (Math.random() * 100 - 50) + 'px');
+                    firework.style.setProperty('--y', (Math.random() * 100 - 50) + 'px');
+                    firework.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                    container.appendChild(firework);
+                    
+                    setTimeout(() => {
+                        firework.remove();
+                    }, 1500);
+                }
+            }, 1000);
+        }
+        
         // 添加抖动动画
         const style = document.createElement('style');
         style.textContent = `
@@ -855,6 +1039,11 @@
             }
         `;
         document.head.appendChild(style);
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            createStars();
+        });
     </script>
 </body>
 </html>
