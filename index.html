@@ -3,191 +3,432 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>个人简介 - 微信可查看</title>
+    <title>生日快乐，我的爱人</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
         }
         
         body {
-            background-color: #f5f5f5;
-            color: #333;
-            line-height: 1.6;
-            padding: 15px;
-            max-width: 100%;
+            background: linear-gradient(135deg, #f9d1d1, #e2b0ff);
+            color: #5a3d5c;
+            min-height: 100vh;
             overflow-x: hidden;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         
         .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             overflow: hidden;
+            position: relative;
+            padding: 30px;
+            margin: 20px;
         }
         
-        header {
-            background: linear-gradient(135deg, #1e88e5, #0d47a1);
-            color: white;
-            padding: 30px 20px;
+        .header {
             text-align: center;
+            margin-bottom: 30px;
+            position: relative;
         }
         
-        .avatar {
-            width: 100px;
-            height: 100px;
+        .header h1 {
+            font-size: 2.5rem;
+            color: #d64c7f;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            color: #8a5a8a;
+        }
+        
+        .heart {
+            color: #ff6b9d;
+            animation: heartbeat 1.5s ease-in-out infinite;
+            display: inline-block;
+            margin: 0 5px;
+        }
+        
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            5% { transform: scale(1.2); }
+            10% { transform: scale(1.1); }
+            15% { transform: scale(1.3); }
+            50% { transform: scale(1); }
+            100% { transform: scale(1); }
+        }
+        
+        .photo-frame {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 30px;
             border-radius: 50%;
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            margin: 0 auto 15px;
             overflow: hidden;
-            background-color: #fff;
+            border: 8px solid #f8c8dc;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
         }
         
-        .avatar img {
+        .photo-frame img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
         
-        h1 {
-            font-size: 22px;
-            margin-bottom: 5px;
+        .message {
+            background: rgba(255, 240, 245, 0.7);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
         }
         
-        .title {
-            font-size: 16px;
-            opacity: 0.9;
+        .message::before {
+            content: """;
+            font-size: 60px;
+            color: #f8c8dc;
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            font-family: Georgia, serif;
         }
         
-        section {
-            padding: 20px;
+        .message::after {
+            content: """;
+            font-size: 60px;
+            color: #f8c8dc;
+            position: absolute;
+            bottom: -40px;
+            right: 10px;
+            font-family: Georgia, serif;
         }
         
-        h2 {
-            font-size: 18px;
-            margin-bottom: 15px;
-            color: #1e88e5;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 8px;
-        }
-        
-        p {
-            margin-bottom: 15px;
-            font-size: 15px;
-        }
-        
-        .skills {
+        .gallery {
             display: flex;
+            justify-content: space-around;
             flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .gallery-item {
+            width: 120px;
+            height: 120px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .wishes {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .wishes h2 {
+            color: #d64c7f;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+        
+        .wishes-list {
+            display: flex;
+            flex-direction: column;
             gap: 10px;
+        }
+        
+        .wish-item {
+            background: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .wish-item i {
+            color: #ff6b9d;
+        }
+        
+        .footer {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #f0e6f5;
+            color: #8a5a8a;
+        }
+        
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: #d64c7f;
             margin-top: 10px;
         }
         
-        .skill {
-            background: #e3f2fd;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 14px;
-            color: #1565c0;
+        .floating-hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
         }
         
-        .contact {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
+        .heart-shape {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ff6b9d;
+            transform: rotate(45deg);
+            opacity: 0.7;
         }
         
-        .contact-item {
-            text-align: center;
-            flex: 1;
+        .heart-shape:before, .heart-shape:after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ff6b9d;
+            border-radius: 50%;
         }
         
-        .contact-item .icon {
-            font-size: 24px;
-            margin-bottom: 5px;
-            color: #1e88e5;
+        .heart-shape:before {
+            top: -10px;
+            left: 0;
         }
         
-        footer {
-            text-align: center;
-            padding: 15px;
-            font-size: 13px;
-            color: #777;
-            background: #f9f9f9;
+        .heart-shape:after {
+            top: 0;
+            left: -10px;
         }
         
-        /* 微信适配特别样式 */
-        .wechat-tip {
-            background: #f0f7ff;
-            border-left: 4px solid #1e88e5;
-            padding: 10px 15px;
-            margin: 15px 0;
-            font-size: 14px;
-            border-radius: 0 4px 4px 0;
+        .balloon {
+            position: absolute;
+            width: 40px;
+            height: 50px;
+            border-radius: 50%;
+            opacity: 0.8;
+        }
+        
+        .balloon:before {
+            content: "";
+            position: absolute;
+            width: 1px;
+            height: 50px;
+            background: rgba(0, 0, 0, 0.2);
+            top: 50px;
+            left: 20px;
+        }
+        
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .photo-frame {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .gallery-item {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .message {
+                padding: 20px;
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <div class="avatar">
-                <!-- 这里可以使用在线图片URL或base64编码的图片 -->
-                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2UzZjJmZCIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LXNpemU9IjE0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iMC4zNWVtIiBmaWxsPSIjMTU2NWMwIj7nrqHnkIY8L3RleHQ+PC9zdmc+" alt="头像">
-            </div>
-            <h1>张三</h1>
-            <div class="title">前端开发工程师</div>
-        </header>
+        <div class="header">
+            <h1>生日快乐，我的爱人 <span class="heart">❤</span></h1>
+            <p>愿这一天充满欢笑与美好回忆</p>
+        </div>
         
-        <section>
-            <div class="wechat-tip">
-                此页面已针对微信优化，可在微信中直接查看
-            </div>
-            
-            <h2>个人简介</h2>
-            <p>我是一名专注于前端开发的工程师，拥有5年Web开发经验。热爱学习新技术，致力于创建优秀的用户体验。</p>
-            
-            <h2>技能专长</h2>
-            <div class="skills">
-                <div class="skill">HTML/CSS</div>
-                <div class="skill">JavaScript</div>
-                <div class="skill">Vue.js</div>
-                <div class="skill">React</div>
-                <div class="skill">微信小程序</div>
-                <div class="skill">Node.js</div>
-            </div>
-            
-            <h2>工作经历</h2>
-            <p>2018-2020：ABC科技有限公司 - 前端开发工程师</p>
-            <p>2020-至今：XYZ互联网公司 - 高级前端工程师</p>
-            
-            <h2>项目经验</h2>
-            <p>曾主导多个大型项目的前端架构设计，包括企业级管理系统、电商平台和移动端应用。</p>
-            
-            <div class="contact">
-                <div class="contact-item">
-                    <div class="icon">📧</div>
-                    <div>邮箱</div>
-                </div>
-                <div class="contact-item">
-                    <div class="icon">📱</div>
-                    <div>电话</div>
-                </div>
-                <div class="contact-item">
-                    <div class="icon">💬</div>
-                    <div>微信</div>
-                </div>
-            </div>
-        </section>
+        <div class="photo-frame">
+            <!-- 这里可以替换为实际照片 -->
+            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4YzhkYyIvPjxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSI0MCIgZmlsbD0iI2ZmZmZmZiIvPjxjaXJjbGUgY3g9Ijc1IiBjeT0iNzAiIHI9IjUiIGZpbGw9IiM1YTNkNWMiLz48Y2lyY2xlIGN4PSIxMjUiIGN5PSI3MCIgcj0iNSIgZmlsbD0iIzVhM2Q1YyIvPjxwYXRoIGQ9Ik04MCAxMTAgUTkwIDEzMCAxMTAgMTEwIFQxNDAgMTEwIiBzdHJva2U9IiM1YTNkNWMiIHN0cm9rZS13aWR0aD0iMyIgZmlsbD0ibm9uZSIgLz48L3N2Zz4=" alt="生日照片">
+        </div>
         
-        <footer>
-            <p>© 2023 个人简介页面 - 设计用于微信查看</p>
-        </footer>
+        <div class="message">
+            <p>亲爱的，在这个特别的日子里，我想对你说：</p>
+            <p>感谢你走进我的生命，让我的世界变得更加美好。你的微笑是我每天的动力，你的温柔是我心灵的港湾。</p>
+            <p>愿你的生日充满无尽的欢乐，愿你的每一个愿望都能实现。我会一直陪伴在你身边，共同创造更多美好的回忆。</p>
+            <p>我爱你，不仅仅在今天，而是在未来的每一天。</p>
+        </div>
+        
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgZmlsbD0iI2Y4YzhkYyIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LXNpemU9IjE0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iMC4zNWVtIiBmaWxsPSIjNWEzZDVjIj7lm73pmYXku7Y8L3RleHQ+PC9zdmc+" alt="回忆1">
+            </div>
+            <div class="gallery-item">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgZmlsbD0iI2UyYjBmZiIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LXNpemU9IjE0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iMC4zNWVtIiBmaWxsPSIjNWEzZDVjIj7lpbPkuIrlj7g8L3RleHQ+PC9zdmc+" alt="回忆2">
+            </div>
+            <div class="gallery-item">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgZmlsbD0iI2Y5ZDFkMSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LXNpemU9IjE0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iMC4zNWVtIiBmaWxsPSIjNWEzZDVjIj7nvo7lpb3lpbM8L3RleHQ+PC9zdmc+" alt="回忆3">
+            </div>
+        </div>
+        
+        <div class="wishes">
+            <h2>生日愿望</h2>
+            <div class="wishes-list">
+                <div class="wish-item">
+                    <i class="fas fa-heart"></i>
+                    <span>愿你永远健康快乐</span>
+                </div>
+                <div class="wish-item">
+                    <i class="fas fa-star"></i>
+                    <span>愿你的梦想都能实现</span>
+                </div>
+                <div class="wish-item">
+                    <i class="fas fa-smile"></i>
+                    <span>愿你每天都充满笑容</span>
+                </div>
+                <div class="wish-item">
+                    <i class="fas fa-sun"></i>
+                    <span>愿你的生活充满阳光</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>谨以此页表达我对你深深的爱意</p>
+            <div class="signature">永远爱你的丈夫</div>
+        </div>
     </div>
+
+    <script>
+        // 创建漂浮的心形
+        function createHearts() {
+            const container = document.querySelector('.container');
+            const heartsContainer = document.createElement('div');
+            heartsContainer.className = 'floating-hearts';
+            container.appendChild(heartsContainer);
+            
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart-shape';
+                
+                // 随机位置
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
+                
+                // 随机大小
+                const size = Math.random() * 10 + 10;
+                
+                // 随机颜色
+                const colors = ['#ff6b9d', '#ff8fab', '#ffacc7', '#ffc8dd'];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                
+                heart.style.left = `${left}%`;
+                heart.style.top = `${top}%`;
+                heart.style.width = `${size}px`;
+                heart.style.height = `${size}px`;
+                heart.style.background = color;
+                
+                // 设置动画
+                heart.style.animation = `float ${Math.random() * 10 + 10}s linear infinite`;
+                
+                heartsContainer.appendChild(heart);
+            }
+        }
+        
+        // 创建漂浮气球
+        function createBalloons() {
+            const container = document.querySelector('.container');
+            const balloonsContainer = document.createElement('div');
+            balloonsContainer.className = 'floating-balloons';
+            container.appendChild(balloonsContainer);
+            
+            for (let i = 0; i < 8; i++) {
+                const balloon = document.createElement('div');
+                balloon.className = 'balloon';
+                
+                // 随机位置
+                const left = Math.random() * 100;
+                
+                // 随机颜色
+                const colors = ['#ff6b9d', '#e2b0ff', '#a8d8ea', '#ffd166'];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                
+                balloon.style.left = `${left}%`;
+                balloon.style.background = color;
+                
+                // 设置动画
+                balloon.style.animation = `balloon-float ${Math.random() * 15 + 15}s linear infinite`;
+                
+                balloonsContainer.appendChild(balloon);
+            }
+        }
+        
+        // 添加漂浮动画
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes float {
+                0% { transform: translateY(0) rotate(45deg); opacity: 0.7; }
+                50% { transform: translateY(-20px) rotate(45deg); opacity: 1; }
+                100% { transform: translateY(0) rotate(45deg); opacity: 0.7; }
+            }
+            
+            @keyframes balloon-float {
+                0% { transform: translateY(100vh); }
+                100% { transform: translateY(-100px); }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // 初始化效果
+        document.addEventListener('DOMContentLoaded', function() {
+            createHearts();
+            createBalloons();
+            
+            // 添加点击效果
+            document.querySelector('.container').addEventListener('click', function(e) {
+                const heart = document.createElement('div');
+                heart.className = 'heart-shape';
+                heart.style.position = 'fixed';
+                heart.style.left = `${e.clientX}px`;
+                heart.style.top = `${e.clientY}px`;
+                heart.style.width = '20px';
+                heart.style.height = '20px';
+                heart.style.animation = 'float 3s ease-out forwards';
+                document.body.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 3000);
+            });
+        });
+    </script>
 </body>
 </html>
