@@ -3,229 +3,315 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>生日快乐，我的爱人</title>
+    <title>生日快乐，我爱的人</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
         }
         
         body {
-            background: linear-gradient(135deg, #f9d1d1, #e2b0ff);
-            color: #5a3d5c;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ff3e6c 0%, #ff8fab 50%, #ffd1dc 100%);
+            color: #fff;
             min-height: 100vh;
             overflow-x: hidden;
-            padding: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 20px;
         }
         
         .container {
-            max-width: 800px;
+            max-width: 1000px;
             width: 100%;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.15);
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
             overflow: hidden;
             position: relative;
-            padding: 30px;
-            margin: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: containerGlow 4s infinite alternate;
+        }
+        
+        @keyframes containerGlow {
+            0% { box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2); }
+            100% { box-shadow: 0 15px 35px rgba(255, 105, 180, 0.4); }
         }
         
         .header {
+            padding: 60px 40px 40px;
             text-align: center;
-            margin-bottom: 30px;
             position: relative;
+            background: linear-gradient(135deg, rgba(255, 62, 108, 0.3) 0%, rgba(255, 143, 171, 0.4) 100%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            overflow: hidden;
         }
         
         .header h1 {
-            font-size: 2.5rem;
-            color: #d64c7f;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            animation: fadeInUp 1.2s ease forwards 0.5s, textGlow 3s infinite alternate;
+        }
+        
+        @keyframes textGlow {
+            0% { text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); }
+            100% { text-shadow: 0 2px 20px rgba(255, 255, 255, 0.5); }
         }
         
         .header p {
-            font-size: 1.2rem;
-            color: #8a5a8a;
+            font-size: 1.4rem;
+            color: #ffe6ee;
+            font-weight: 300;
+            letter-spacing: 1px;
+            opacity: 0;
+            animation: fadeInUp 1.2s ease forwards 0.8s;
         }
         
-        .heart {
-            color: #ff6b9d;
-            animation: heartbeat 1.5s ease-in-out infinite;
-            display: inline-block;
-            margin: 0 5px;
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 40px;
+            gap: 40px;
         }
         
-        @keyframes heartbeat {
-            0% { transform: scale(1); }
-            5% { transform: scale(1.2); }
-            10% { transform: scale(1.1); }
-            15% { transform: scale(1.3); }
-            50% { transform: scale(1); }
-            100% { transform: scale(1); }
+        .photo-section {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
         }
         
         .photo-frame {
-            width: 200px;
-            height: 200px;
-            margin: 0 auto 30px;
-            border-radius: 50%;
+            width: 280px;
+            height: 350px;
+            border-radius: 15px;
             overflow: hidden;
-            border: 8px solid #f8c8dc;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transform: perspective(1000px) rotateY(-5deg);
+            transition: transform 0.8s ease, box-shadow 0.8s ease;
+            opacity: 0;
+            animation: fadeIn 1.5s ease forwards 1.2s, photoFloat 6s ease-in-out infinite;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        @keyframes photoFloat {
+            0% { transform: perspective(1000px) rotateY(-5deg) translateY(0); }
+            50% { transform: perspective(1000px) rotateY(-5deg) translateY(-10px); }
+            100% { transform: perspective(1000px) rotateY(-5deg) translateY(0); }
+        }
+        
+        .photo-frame:hover {
+            transform: perspective(1000px) rotateY(0deg);
+            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.5);
+            animation-play-state: paused;
         }
         
         .photo-frame img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            filter: brightness(1.05) contrast(1.1);
+            transition: transform 0.8s ease;
+        }
+        
+        .photo-frame:hover img {
+            transform: scale(1.05);
+        }
+        
+        .photo-frame::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255, 105, 180, 0.2) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .message-section {
+            flex: 2;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         
         .message {
-            background: rgba(255, 240, 245, 0.7);
-            padding: 25px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 40px;
             border-radius: 15px;
-            margin-bottom: 30px;
             line-height: 1.8;
-            font-size: 1.1rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            font-size: 1.2rem;
             position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            animation: fadeIn 1.5s ease forwards 1.5s, messagePulse 5s infinite;
+            backdrop-filter: blur(5px);
+        }
+        
+        @keyframes messagePulse {
+            0% { box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); }
+            50% { box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3); }
+            100% { box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); }
         }
         
         .message::before {
             content: """;
-            font-size: 60px;
-            color: #f8c8dc;
+            font-size: 80px;
+            color: rgba(255, 255, 255, 0.5);
             position: absolute;
-            top: -10px;
-            left: 10px;
+            top: -20px;
+            left: 20px;
             font-family: Georgia, serif;
         }
         
-        .message::after {
-            content: """;
-            font-size: 60px;
-            color: #f8c8dc;
-            position: absolute;
-            bottom: -40px;
-            right: 10px;
-            font-family: Georgia, serif;
+        .message p {
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
         }
         
-        .gallery {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-        
-        .gallery-item {
-            width: 120px;
-            height: 120px;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-        }
-        
-        .gallery-item:hover {
-            transform: scale(1.05);
-        }
-        
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .highlight {
+            color: #ffe6ee;
+            font-weight: 500;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
         }
         
         .wishes {
-            text-align: center;
-            margin-bottom: 30px;
+            margin-top: 40px;
+            opacity: 0;
+            animation: fadeIn 1.5s ease forwards 1.8s;
         }
         
         .wishes h2 {
-            color: #d64c7f;
-            margin-bottom: 15px;
-            font-size: 1.8rem;
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #ffe6ee;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
         
         .wishes-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
         }
         
         .wish-item {
-            background: white;
-            padding: 12px 20px;
-            border-radius: 50px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            background: rgba(255, 255, 255, 0.25);
+            padding: 15px 20px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            transition: transform 0.3s ease, background 0.3s ease;
+            border-left: 4px solid #ff8fab;
+            backdrop-filter: blur(5px);
+            animation: wishItemFloat 4s ease-in-out infinite;
+            animation-delay: calc(var(--i) * 0.2s);
+        }
+        
+        @keyframes wishItemFloat {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0); }
+        }
+        
+        .wish-item:hover {
+            transform: translateY(-8px) scale(1.03);
+            background: rgba(255, 255, 255, 0.35);
+            animation-play-state: paused;
         }
         
         .wish-item i {
-            color: #ff6b9d;
+            color: #ff3e6c;
+            font-size: 1.3rem;
         }
         
         .footer {
             text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid #f0e6f5;
-            color: #8a5a8a;
+            padding: 30px 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
         }
         
         .signature {
             font-family: 'Dancing Script', cursive;
-            font-size: 1.8rem;
-            color: #d64c7f;
+            font-size: 2.5rem;
+            color: #ffe6ee;
             margin-top: 10px;
+            letter-spacing: 2px;
+            opacity: 0;
+            animation: fadeIn 1.5s ease forwards 2s, signatureGlow 3s infinite alternate;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
         
-        .floating-hearts {
+        @keyframes signatureGlow {
+            0% { text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); }
+            100% { text-shadow: 0 2px 15px rgba(255, 255, 255, 0.5); }
+        }
+        
+        .date {
+            font-size: 1rem;
+            color: #ffe6ee;
+            margin-top: 10px;
+            letter-spacing: 1px;
+        }
+        
+        /* 装饰元素 */
+        .decoration {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
             pointer-events: none;
-            z-index: -1;
+            z-index: 1;
         }
         
-        .heart-shape {
+        .confetti {
             position: absolute;
-            width: 20px;
+            width: 10px;
             height: 20px;
-            background: #ff6b9d;
-            transform: rotate(45deg);
+            background: #ffeb3b;
+            opacity: 0.8;
+            animation: confettiFall 5s linear infinite;
+        }
+        
+        @keyframes confettiFall {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+        
+        .floating-heart {
+            position: absolute;
+            font-size: 24px;
+            color: #ff3e6c;
             opacity: 0.7;
+            animation: heartFloat 8s linear infinite;
         }
         
-        .heart-shape:before, .heart-shape:after {
-            content: "";
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: #ff6b9d;
-            border-radius: 50%;
-        }
-        
-        .heart-shape:before {
-            top: -10px;
-            left: 0;
-        }
-        
-        .heart-shape:after {
-            top: 0;
-            left: -10px;
+        @keyframes heartFloat {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
         }
         
         .balloon {
@@ -233,90 +319,139 @@
             width: 40px;
             height: 50px;
             border-radius: 50%;
-            opacity: 0.8;
+            background: #ff4081;
+            opacity: 0.7;
+            animation: balloonFloat 15s linear infinite;
+            bottom: -50px;
         }
         
-        .balloon:before {
+        .balloon::before {
             content: "";
             position: absolute;
             width: 1px;
-            height: 50px;
-            background: rgba(0, 0, 0, 0.2);
+            height: 60px;
+            background: rgba(255, 255, 255, 0.5);
             top: 50px;
             left: 20px;
         }
         
-        @media (max-width: 600px) {
+        @keyframes balloonFloat {
+            0% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(20px); opacity: 0; }
+        }
+        
+        /* 动画 */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
             .header h1 {
-                font-size: 2rem;
+                font-size: 3rem;
+            }
+            
+            .header p {
+                font-size: 1.1rem;
+            }
+            
+            .content {
+                padding: 20px;
+                gap: 30px;
             }
             
             .photo-frame {
-                width: 150px;
-                height: 150px;
-            }
-            
-            .gallery-item {
-                width: 80px;
-                height: 80px;
+                width: 220px;
+                height: 280px;
             }
             
             .message {
-                padding: 20px;
-                font-size: 1rem;
+                padding: 25px;
+                font-size: 1.1rem;
             }
+            
+            .wishes-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .signature {
+                font-size: 2rem;
+            }
+        }
+        
+        /* 烟花效果 */
+        .firework {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8);
+            animation: fireworkExplode 1.5s ease-out forwards;
+        }
+        
+        @keyframes fireworkExplode {
+            0% { transform: translate(var(--x), var(--y)) scale(0); opacity: 1; }
+            100% { transform: translate(var(--x), var(--y)) scale(1); opacity: 0; box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.8); }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>生日快乐，我的爱人 <span class="heart">❤</span></h1>
-            <p>愿这一天充满欢笑与美好回忆</p>
+            <h1>生日快乐，婷婷老婆</h1>
+            <p>愿这你的世界充满欢笑与美好回忆</p>
         </div>
         
-        <div class="photo-frame">
-            <!-- 这里可以替换为实际照片 -->
-            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4YzhkYyIvPjxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSI0MCIgZmlsbD0iI2ZmZmZmZiIvPjxjaXJjbGUgY3g9Ijc1IiBjeT0iNzAiIHI9IjUiIGZpbGw9IiM1YTNkNWMiLz48Y2lyY2xlIGN4PSIxMjUiIGN5PSI3MCIgcj0iNSIgZmlsbD0iIzVhM2Q1YyIvPjxwYXRoIGQ9Ik04MCAxMTAgUTkwIDEzMCAxMTAgMTEwIFQxNDAgMTEwIiBzdHJva2U9IiM1YTNkNWMiIHN0cm9rZS13aWR0aD0iMyIgZmlsbD0ibm9uZSIgLz48L3N2Zz4=" alt="生日照片">
-        </div>
-        
-        <div class="message">
-            <p>亲爱的，在这个特别的日子里，我想对你说：</p>
-            <p>感谢你走进我的生命，让我的世界变得更加美好。你的微笑是我每天的动力，你的温柔是我心灵的港湾。</p>
-            <p>愿你的生日充满无尽的欢乐，愿你的每一个愿望都能实现。我会一直陪伴在你身边，共同创造更多美好的回忆。</p>
-            <p>我爱你，不仅仅在今天，而是在未来的每一天。</p>
-        </div>
-        
-        <div class="gallery">
-            <div class="gallery-item">
-                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgZmlsbD0iI2Y4YzhkYyIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LXNpemU9IjE0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iMC4zNWVtIiBmaWxsPSIjNWEzZDVjIj7lm73pmYXku7Y8L3RleHQ+PC9zdmc+" alt="回忆1">
-            </div>
-            <div class="gallery-item">
-                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgZmlsbD0iI2UyYjBmZiIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LXNpemU9IjE0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iMC4zNWVtIiBmaWxsPSIjNWEzZDVjIj7lpbPkuIrlj7g8L3RleHQ+PC9zdmc+" alt="回忆2">
-            </div>
-            <div class="gallery-item">
-                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgZmlsbD0iI2Y5ZDFkMSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LXNpemU9IjE0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iMC4zNWVtIiBmaWxsPSIjNWEzZDVjIj7nvo7lpb3lpbM8L3RleHQ+PC9zdmc+" alt="回忆3">
-            </div>
-        </div>
-        
-        <div class="wishes">
-            <h2>生日愿望</h2>
-            <div class="wishes-list">
-                <div class="wish-item">
-                    <i class="fas fa-heart"></i>
-                    <span>愿你永远健康快乐</span>
+        <div class="content">
+            <div class="photo-section">
+                <div class="photo-frame">
+                    <!-- 这里可以替换为实际照片 -->
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjgwIiBoZWlnaHQ9IjM1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjgwIiBoZWlnaHQ9IjM1MCIgZmlsbD0iI2ZmOGZhYiIvPjxjaXJjbGUgY3g9IjE0MCIgY3k9IjEwMCIgcj0iNTAiIGZpbGw9IiNmZmZmZmYiLz48Y2lyY2xlIGN4PSIxMTAiIGN5PSI5MCIgcj0iNiIgZmlsbD0iI2ZmM2U2YyIvPjxjaXJjbGUgY3g9IjE3MCIgY3k9IjkwIiByPSI2IiBmaWxsPSIjZmYzZTZjIi8+PHBhdGggZD0iTTEwMCAxNDUgUTE0MCAxODAgMTgwIDE0NSIgc3Ryb2tlPSIjZmYzZTZjIiBzdHJva2Utd2lkdGg9IjQiIGZpbGw9Im5vbmUiIC8+PC9zdmc+" alt="生日照片">
                 </div>
-                <div class="wish-item">
-                    <i class="fas fa-star"></i>
-                    <span>愿你的梦想都能实现</span>
+            </div>
+            
+            <div class="message-section">
+                <div class="message">
+                    <p>亲爱的，在这个特别的日子里，我想对你说：</p>
+                    <p>感谢你走进我的生命，让我的世界变得更加美好。<span class="highlight">你的微笑是我每天的动力</span>，你的温柔是我心灵的港湾。</p>
+                    <p>愿你的生日充满无尽的欢乐，愿你的每一个愿望都能实现。我会一直陪伴在你身边，<span class="highlight">共同创造更多美好的回忆</span>。</p>
+                    <p>我爱你，不仅仅在今天，而是在未来的每一天。</p>
                 </div>
-                <div class="wish-item">
-                    <i class="fas fa-smile"></i>
-                    <span>愿你每天都充满笑容</span>
-                </div>
-                <div class="wish-item">
-                    <i class="fas fa-sun"></i>
-                    <span>愿你的生活充满阳光</span>
+                
+                <div class="wishes">
+                    <h2>生日愿望</h2>
+                    <div class="wishes-list">
+                        <div class="wish-item" style="--i: 0;">
+                            <i class="fas fa-heart"></i>
+                            <span>愿你永远健康快乐</span>
+                        </div>
+                        <div class="wish-item" style="--i: 1;">
+                            <i class="fas fa-star"></i>
+                            <span>愿你的梦想都能实现</span>
+                        </div>
+                        <div class="wish-item" style="--i: 2;">
+                            <i class="fas fa-smile"></i>
+                            <span>愿你每天都充满笑容</span>
+                        </div>
+                        <div class="wish-item" style="--i: 3;">
+                            <i class="fas fa-sun"></i>
+                            <span>愿你的生活充满阳光</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -324,104 +459,96 @@
         <div class="footer">
             <p>谨以此页表达我对你深深的爱意</p>
             <div class="signature">永远爱你的丈夫</div>
+            <div class="date">2025年</div>
         </div>
     </div>
 
     <script>
-        // 创建漂浮的心形
-        function createHearts() {
+        // 创建五彩纸屑
+        function createConfetti() {
+            const colors = ['#ffeb3b', '#ff4081', '#3f51b5', '#4caf50', '#ff9800'];
             const container = document.querySelector('.container');
-            const heartsContainer = document.createElement('div');
-            heartsContainer.className = 'floating-hearts';
-            container.appendChild(heartsContainer);
             
-            for (let i = 0; i < 15; i++) {
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.animationDelay = Math.random() * 5 + 's';
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = (Math.random() * 10 + 5) + 'px';
+                confetti.style.height = (Math.random() * 15 + 10) + 'px';
+                container.appendChild(confetti);
+            }
+        }
+        
+        // 创建漂浮的心形
+        function createFloatingHearts() {
+            const container = document.querySelector('.container');
+            
+            for (let i = 0; i < 20; i++) {
                 const heart = document.createElement('div');
-                heart.className = 'heart-shape';
-                
-                // 随机位置
-                const left = Math.random() * 100;
-                const top = Math.random() * 100;
-                
-                // 随机大小
-                const size = Math.random() * 10 + 10;
-                
-                // 随机颜色
-                const colors = ['#ff6b9d', '#ff8fab', '#ffacc7', '#ffc8dd'];
-                const color = colors[Math.floor(Math.random() * colors.length)];
-                
-                heart.style.left = `${left}%`;
-                heart.style.top = `${top}%`;
-                heart.style.width = `${size}px`;
-                heart.style.height = `${size}px`;
-                heart.style.background = color;
-                
-                // 设置动画
-                heart.style.animation = `float ${Math.random() * 10 + 10}s linear infinite`;
-                
-                heartsContainer.appendChild(heart);
+                heart.className = 'floating-heart';
+                heart.innerHTML = '❤';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDelay = Math.random() * 8 + 's';
+                heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                container.appendChild(heart);
             }
         }
         
         // 创建漂浮气球
         function createBalloons() {
+            const colors = ['#ff4081', '#ffeb3b', '#3f51b5', '#4caf50', '#ff9800'];
             const container = document.querySelector('.container');
-            const balloonsContainer = document.createElement('div');
-            balloonsContainer.className = 'floating-balloons';
-            container.appendChild(balloonsContainer);
             
-            for (let i = 0; i < 8; i++) {
+            for (let i = 0; i < 10; i++) {
                 const balloon = document.createElement('div');
                 balloon.className = 'balloon';
-                
-                // 随机位置
-                const left = Math.random() * 100;
-                
-                // 随机颜色
-                const colors = ['#ff6b9d', '#e2b0ff', '#a8d8ea', '#ffd166'];
-                const color = colors[Math.floor(Math.random() * colors.length)];
-                
-                balloon.style.left = `${left}%`;
-                balloon.style.background = color;
-                
-                // 设置动画
-                balloon.style.animation = `balloon-float ${Math.random() * 15 + 15}s linear infinite`;
-                
-                balloonsContainer.appendChild(balloon);
+                balloon.style.left = Math.random() * 100 + 'vw';
+                balloon.style.animationDelay = Math.random() * 15 + 's';
+                balloon.style.background = colors[Math.floor(Math.random() * colors.length)];
+                container.appendChild(balloon);
             }
         }
         
-        // 添加漂浮动画
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes float {
-                0% { transform: translateY(0) rotate(45deg); opacity: 0.7; }
-                50% { transform: translateY(-20px) rotate(45deg); opacity: 1; }
-                100% { transform: translateY(0) rotate(45deg); opacity: 0.7; }
-            }
+        // 创建烟花效果
+        function createFireworks() {
+            const container = document.querySelector('.container');
             
-            @keyframes balloon-float {
-                0% { transform: translateY(100vh); }
-                100% { transform: translateY(-100px); }
-            }
-        `;
-        document.head.appendChild(style);
+            setInterval(() => {
+                if (Math.random() > 0.7) { // 随机生成烟花
+                    const firework = document.createElement('div');
+                    firework.className = 'firework';
+                    firework.style.left = Math.random() * 100 + 'vw';
+                    firework.style.top = Math.random() * 100 + 'vh';
+                    firework.style.setProperty('--x', (Math.random() * 100 - 50) + 'px');
+                    firework.style.setProperty('--y', (Math.random() * 100 - 50) + 'px');
+                    firework.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                    container.appendChild(firework);
+                    
+                    setTimeout(() => {
+                        firework.remove();
+                    }, 1500);
+                }
+            }, 1000);
+        }
         
-        // 初始化效果
+        // 初始化所有效果
         document.addEventListener('DOMContentLoaded', function() {
-            createHearts();
+            createConfetti();
+            createFloatingHearts();
             createBalloons();
+            createFireworks();
             
-            // 添加点击效果
-            document.querySelector('.container').addEventListener('click', function(e) {
+            // 添加点击效果 - 点击时产生心形
+            document.addEventListener('click', function(e) {
                 const heart = document.createElement('div');
-                heart.className = 'heart-shape';
-                heart.style.position = 'fixed';
-                heart.style.left = `${e.clientX}px`;
-                heart.style.top = `${e.clientY}px`;
-                heart.style.width = '20px';
-                heart.style.height = '20px';
-                heart.style.animation = 'float 3s ease-out forwards';
+                heart.className = 'floating-heart';
+                heart.innerHTML = '❤';
+                heart.style.left = e.clientX + 'px';
+                heart.style.top = e.clientY + 'px';
+                heart.style.fontSize = '30px';
+                heart.style.animation = 'heartFloat 3s ease-out forwards';
                 document.body.appendChild(heart);
                 
                 setTimeout(() => {
