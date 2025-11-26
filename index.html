@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>给最爱的你 - 生日惊喜</title>
+    <title>给婷婷宝贝 - 生日惊喜</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -23,6 +23,113 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
+        }
+        
+        /* 音乐播放器样式 */
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(30, 15, 25, 0.9);
+            border-radius: 50px;
+            padding: 12px 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .music-player:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .music-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff3e6c, #ff8fab);
+            color: white;
+            border: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(255, 62, 108, 0.4);
+        }
+        
+        .music-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(255, 62, 108, 0.6);
+        }
+        
+        .music-info {
+            display: flex;
+            flex-direction: column;
+            max-width: 0;
+            overflow: hidden;
+            transition: max-width 0.5s ease;
+        }
+        
+        .music-player.expanded .music-info {
+            max-width: 200px;
+        }
+        
+        .music-title {
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #ffe6ee;
+            white-space: nowrap;
+        }
+        
+        .music-artist {
+            font-size: 0.8rem;
+            color: #ff8fab;
+            white-space: nowrap;
+        }
+        
+        .volume-control {
+            width: 0;
+            overflow: hidden;
+            transition: width 0.3s ease;
+        }
+        
+        .music-player.expanded .volume-control {
+            width: 80px;
+        }
+        
+        .volume-control input {
+            width: 100%;
+        }
+        
+        /* 音乐波动画 */
+        .music-wave {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            height: 20px;
+        }
+        
+        .wave-bar {
+            width: 3px;
+            background: #ff3e6c;
+            border-radius: 2px;
+            animation: wave 1.2s infinite ease-in-out;
+        }
+        
+        .wave-bar:nth-child(2) { animation-delay: 0.1s; }
+        .wave-bar:nth-child(3) { animation-delay: 0.2s; }
+        .wave-bar:nth-child(4) { animation-delay: 0.3s; }
+        .wave-bar:nth-child(5) { animation-delay: 0.4s; }
+        
+        @keyframes wave {
+            0%, 100% { height: 5px; }
+            50% { height: 15px; }
         }
         
         /* 验证页面样式 */
@@ -665,6 +772,12 @@
             .signature {
                 font-size: 2rem;
             }
+            
+            .music-player {
+                bottom: 10px;
+                right: 10px;
+                padding: 10px 15px;
+            }
         }
         
         /* 烟花效果 */
@@ -722,8 +835,25 @@
 
     <!-- 主内容页面 -->
     <div class="main-container" id="mainContainer">
+        <!-- 音乐播放器 -->
+        <div class="music-player" id="music-player">
+            <button class="music-btn" id="play-pause-btn">
+                <i class="fas fa-play"></i>
+            </button>
+            <div class="music-info">
+                <div class="music-title">生日快乐</div>
+                <div class="music-artist">致婷婷宝贝</div>
+            </div>
+            <div class="volume-control">
+                <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="0.7">
+            </div>
+            <button class="music-btn" id="expand-btn">
+                <i class="fas fa-music"></i>
+            </button>
+        </div>
+        
         <div class="header">
-            <h1>生日快乐，我的爱人</h1>
+            <h1>生日快乐，我的婷婷宝贝</h1>
             <p>愿这一天充满欢笑与美好回忆</p>
         </div>
         
@@ -761,7 +891,7 @@
             </div>
             
             <div class="wishes-section">
-                <h2>生日愿望</h2>
+                <h2>生日祝福</h2>
                 <div class="wishes-list">
                     <div class="wish-item" style="--i: 0;">
                         <i class="fas fa-heart"></i>
@@ -785,10 +915,19 @@
         
         <div class="footer">
             <p>谨以此页表达我对你深深的爱意</p>
-            <div class="signature">永远爱你的丈夫</div>
-            <div class="date">2023年</div>
+            <div class="signature">Happy Birthday</div>
+            <div class="signature">To My Love 周柳婷</div>
+            <div class="signature">永远爱你的丈夫-陈海华</div>
+            <div class="date">2025年</div>
         </div>
     </div>
+
+    <!-- 音频元素 -->
+    <audio id="bg-music" loop>
+        <!-- 这里可以替换为您喜欢的音乐URL -->
+        <source src="https://cdn.jsdelivr.net/gh/Huasss/ShowPage/%E7%94%9F%E6%97%A5%E5%BF%AB%E4%B9%90.mp3" type="audio/mpeg">
+        您的浏览器不支持音频元素。
+    </audio>
 
     <script>
         // 设置正确的结婚纪念日
@@ -807,13 +946,27 @@
         const timeline = document.getElementById('timeline');
         const starsContainer = document.getElementById('stars');
         
-        // 照片数据 - 这里使用占位图，实际使用时可以替换为真实照片URL
+        // 音乐播放器元素
+        const audio = document.getElementById('bg-music');
+        const playPauseBtn = document.getElementById('play-pause-btn');
+        const expandBtn = document.getElementById('expand-btn');
+        const volumeSlider = document.getElementById('volume-slider');
+        const musicPlayer = document.getElementById('music-player');
+        
+        // 照片数据
         const photos = [
-            { src: "https://picsum.photos/800/500?random=1", title: "我们的婚礼" },
-            { src: "https://picsum.photos/800/500?random=2", title: "第一次旅行" },
-            { src: "https://picsum.photos/800/500?random=3", title: "浪漫晚餐" },
-            { src: "https://picsum.photos/800/500?random=4", title: "生日庆祝" },
-            { src: "https://picsum.photos/800/500?random=5", title: "海边漫步" }
+            { src: "https://raw.githubusercontent.com/Huasss/ShowPage/refs/heads/main/mmexport1764079465665.jpg", title: "第一张合影" },
+            { src: "https://raw.githubusercontent.com/Huasss/ShowPage/refs/heads/main/mmexport1764079470478.jpg", title: "云南游" },
+            { src: "https://raw.githubusercontent.com/Huasss/ShowPage/refs/heads/main/mmexport1764079468119.jpg", title: "游南澳岛" },
+            { src: "https://raw.githubusercontent.com/Huasss/ShowPage/refs/heads/main/mmexport1764079471548.jpg", title: "爬雪山" },
+            { src: "https://raw.githubusercontent.com/Huasss/ShowPage/refs/heads/main/IMG_20251125_221425.jpg", title: "领证啦" },
+            { src: "https://raw.githubusercontent.com/Huasss/ShowPage/refs/heads/main/mmexport1764079469313.jpg", title: "结婚照" },
+            { src: "https://raw.githubusercontent.com/Huasss/ShowPage/refs/heads/main/mmexport1764079467028.jpg", title: "我们的婚纱照" },
+            { src: "https://raw.githubusercontent.com/Huasss/ShowPage/refs/heads/main/mmexport1764079472597.jpg", title: "婚纱照" },
+            { src: "https://raw.githubusercontent.com/Huasss/ShowPage/refs/heads/main/mmexport1764079473713.jpg", title: "婚纱照" },
+            { src: "https://raw.githubusercontent.com/Huasss/ShowPage/refs/heads/main/mmexport1764079476039.jpg", title: "迪士尼" },
+            { src: "https://raw.githubusercontent.com/Huasss/ShowPage/refs/heads/main/1.jpg", title: "可爱的崽崽" },
+            { src: "https://raw.githubusercontent.com/Huasss/ShowPage/refs/heads/main/2.jpg", title: "一家三口" }
         ];
         
         // 大事记数据
@@ -845,6 +998,68 @@
             }
         }
         
+        // 初始化音乐播放器
+        function initMusicPlayer() {
+            // 设置初始音量
+            audio.volume = volumeSlider.value;
+            
+            // 播放/暂停按钮事件
+            playPauseBtn.addEventListener('click', function() {
+                if (audio.paused) {
+                    audio.play();
+                    playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                } else {
+                    audio.pause();
+                    playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+                }
+            });
+            
+            // 展开/收起音乐播放器
+            expandBtn.addEventListener('click', function() {
+                musicPlayer.classList.toggle('expanded');
+                if (musicPlayer.classList.contains('expanded')) {
+                    expandBtn.innerHTML = '<i class="fas fa-compress-alt"></i>';
+                } else {
+                    expandBtn.innerHTML = '<i class="fas fa-music"></i>';
+                }
+            });
+            
+            // 音量控制
+            volumeSlider.addEventListener('input', function() {
+                audio.volume = volumeSlider.value;
+            });
+            
+            // 音乐播放结束时显示播放按钮
+            audio.addEventListener('ended', function() {
+                playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+            });
+        }
+        
+        // 播放背景音乐
+        function playBackgroundMusic() {
+            // 尝试自动播放
+            const playPromise = audio.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    // 自动播放成功
+                    playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                }).catch(error => {
+                    // 自动播放失败，等待用户交互
+                    console.log('自动播放被阻止，等待用户交互');
+                    playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+                    
+                    // 添加点击页面任意位置开始播放的功能
+                    document.body.addEventListener('click', function startPlayback() {
+                        audio.play().then(() => {
+                            playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                        });
+                        document.body.removeEventListener('click', startPlayback);
+                    }, { once: true });
+                });
+            }
+        }
+        
         // 验证日期
         submitBtn.addEventListener('click', function() {
             const inputDate = dateInput.value.trim();
@@ -860,6 +1075,9 @@
                     renderCarousel();
                     renderTimeline();
                     createFireworks();
+                    // 初始化音乐播放器并尝试播放音乐
+                    initMusicPlayer();
+                    playBackgroundMusic();
                 }, 500);
             } else {
                 // 验证失败
@@ -915,7 +1133,7 @@
             nextBtn.addEventListener('click', nextSlide);
             
             // 自动轮播
-            setInterval(nextSlide, 5000);
+            setInterval(nextSlide, 3000);
         }
         
         // 轮播图函数
